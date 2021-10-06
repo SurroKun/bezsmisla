@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
        
-        ac = GetComponent<Animator>();
+        
         selfCollider = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
 
