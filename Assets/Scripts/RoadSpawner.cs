@@ -8,7 +8,7 @@ public class RoadSpawner : MonoBehaviour
     public GameObject StartBlock;
 
     float startBlockXPos;
-    int blocksCount = 7;
+    int blocksCount = 1;
     float blockLenght = 0;
     int safeZone = 50;
 
@@ -21,7 +21,7 @@ public class RoadSpawner : MonoBehaviour
     {
 
 
-        startBlockXPos = PlayerTransf.position.x + 15;
+        startBlockXPos = PlayerTransf.position.x;
         blockLenght = 30;
         StartGame();
 
@@ -31,7 +31,6 @@ public class RoadSpawner : MonoBehaviour
     {
         PlayerTransf.GetComponent<PlayerMovement>().ResetPosition();
 
-       
         foreach (var go in CurrentBlocks)
         {
             Destroy(go);

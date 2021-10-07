@@ -13,7 +13,7 @@ public class RoadBlock : MonoBehaviour
     void Start()
     {
         GM = FindObjectOfType<GameManager>();
-        moveVec = new Vector3(-1, 0, 0);
+        moveVec = new Vector3(1, 0, 0);
 
         CoinObj.SetActive(Random.Range(0, 101) <= CoinChanse);
 

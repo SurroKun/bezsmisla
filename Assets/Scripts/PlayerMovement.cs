@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         selfCollider.center = ccCenterRoll;
         selfCollider.height = ccHeightRoll;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.5f);
                
         SkinAnimator.SetBool("rolling", false);
         selfCollider.center = ccCenterNorm;
