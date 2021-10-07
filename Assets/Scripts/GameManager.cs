@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public float PointsBaseValue, PointsMultiplier;
     public bool CanPlay = true;
     public int Coins = 0;
-
+    public List<Skin> Skins;
 
     public void StartGame() {
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         ResultObj.SetActive(false);
         CanPlay = true;
         RS.StartGame();
-        PM.ac.SetTrigger("respawn");
+        PM.SkinAnimator.SetTrigger("respawn");
 
         Points = 0;
 
@@ -58,8 +58,28 @@ public class GameManager : MonoBehaviour
     public void AddCoins(int number)
     {
         Coins += number;
-        CoinTxt.text = Coins.ToString(); 
+        RefreshText();
 
+    }
+
+
+    public void RefreshText()
+    {
+        CoinTxt.text = Coins.ToString();
+
+    }
+
+    public void ActivateSkin(int skinIndex) { 
+    
+        foreach (var skin in Skins)
+        {
+            skin.HideSkin();
+        }
+
+        Skins[skinIndex].ShowSkin();
+        PM.SkinAnimator = Skins[skinIndex].AC;
+
+        PM.SkinAnimator.SetTrigger("death");
     }
 
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Animator ac;
+    public Animator SkinAnimator;
     public GameManager GM;
     CapsuleCollider selfCollider;
     Rigidbody rb;
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(new Vector3(0, Physics.gravity.y * 4, 0), ForceMode.Acceleration);
         if (wannaJump && isGrounded())
         {
-            ac.SetTrigger("jumping");
+            SkinAnimator.SetTrigger("jumping");
             rb.AddForce(new Vector3(0, JumpSpeed, 0), ForceMode.Impulse);
             wannaJump = false;
         }
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded())
         {
-            ac.ResetTrigger("fallin");
+            SkinAnimator.ResetTrigger("fallin");
             if (GM.CanPlay)
             {
                 if (!isRolling)
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (rb.velocity.y < -8)
         {
-            ac.SetTrigger("fallin");
+            SkinAnimator.SetTrigger("fallin");
 
         }
             CheckInput();
@@ -105,13 +105,13 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator DoRoll() {
         isRolling = true;
-        ac.SetBool("rolling", true);
+        SkinAnimator.SetBool("rolling", true);
         selfCollider.center = ccCenterRoll;
         selfCollider.height = ccHeightRoll;
 
         yield return new WaitForSeconds(1.5f);
                
-        ac.SetBool("rolling", false);
+        SkinAnimator.SetBool("rolling", false);
         selfCollider.center = ccCenterNorm;
         selfCollider.height = ccHeightNorm;
         yield return new WaitForSeconds(.3f);
@@ -137,9 +137,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Death()
     {
         GM.CanPlay = false;
-        ac.SetTrigger("death");
+        SkinAnimator.SetTrigger("death");
         yield return new WaitForSeconds(2);
-        ac.ResetTrigger("death");
+        SkinAnimator.ResetTrigger("death");
         GM.ShowResult();
 
     }
